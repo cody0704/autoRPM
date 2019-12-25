@@ -25,9 +25,11 @@ jobs:
     
     - name: Build docker
       run: |
-        docker build -t docker.pkg.github.com/${{ github.repository }}/auto-rpm:latest .
+        docker build -t ${{ github.repository }} .
+        docker tag ${{ github.repository }}:latest ${{ github.repository }}:1.0
     
     - name: Push
       run: |
         docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
         docker push docker.pkg.github.com/${{ github.repository }}/auto-rpm:latest
+        docker push docker.pkg.github.com/${{ github.repository }}/auto-rpm:1.0
