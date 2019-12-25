@@ -17,6 +17,7 @@ jobs:
         make build_linux_amd64
     
     - name: Build docker
+      run: |
         docker build --pull -t docker.pkg.github.com/${{ github.repository }}/auto-rpm:latest .
     
     - name: Push
