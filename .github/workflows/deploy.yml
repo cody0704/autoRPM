@@ -1,6 +1,10 @@
 name: Build and Package
 
-on: [deployment]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
   build:
