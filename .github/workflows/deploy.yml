@@ -25,7 +25,6 @@ jobs:
     
     - name: Build docker
       run: |
-        docker build -t $(DEPLOY_ACCOUNT)/$(DEPLOY_IMAGE) .
         docker build -t docker.pkg.github.com/${{ github.repository }}/auto-rpm:latest .
     
     - name: Push
