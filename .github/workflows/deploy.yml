@@ -26,7 +26,8 @@ jobs:
     - name: Build docker
       run: |
         docker build -t cody0704/autorpm .
-        docker tag docker.pkg.github.com/cody0704/autorpm/auto-rpm:latest cody0704/autorpm:1.0
+        docker tag cody0704/autorpm:latest docker.pkg.github.com/cody0704/autorpm/auto-rpm:1.0
+        docker tag cody0704/autorpm:latest docker.pkg.github.com/cody0704/autorpm/auto-rpm:latest
     
     - name: Push
       run: |
