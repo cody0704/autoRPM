@@ -1,0 +1,25 @@
+name: Build and Package
+
+on: [deployment]
+
+jobs:
+  build:
+        
+    runs-on: ubuntu-latest
+    container: golang:1.13
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+      
+    - name: Build golang binary
+      run: |
+        make build_linux_amd64
+    
+    - name: Build docker
+        docker build --pull -t docker.pkg.github.com/${{ github.repository }}/auto-rpm:latest .
+    
+    - name: Push
+      run: |
+        docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+        docker push docker.pkg.github.com/${{ github.repository }}/auto-rpm:latest
